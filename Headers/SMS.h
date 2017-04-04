@@ -30,7 +30,7 @@ struct g_Course //Global courses for the academic staff. Score will be stored he
 	int To; // time
 	//char DateOfWeek; // Monday, Tuesday…
     char Class[10]; //16CLC1, 16CTT, 15CLC2,...
-    DynamicArray Retakers; //Storing students who retakes the class by Student ID
+    //DynamicArray Retakers; //Storing students who retakes the class by Student ID
 };
 
 struct Presence
