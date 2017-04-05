@@ -20,7 +20,7 @@ End time
 Class
 Number of retakers Retakers.
 Score list:
-Total number of student
+Total number of student if this number is 0 then the score is not yet inputed by the lecturer
 Student ID
 Student name
 lab mid term Final
@@ -46,21 +46,7 @@ Pham Hoang An
 
 */
 
-struct ScoreNode{
-    Score data;
-    ScoreNode *next;
-};
 
-class ScoreBoard{
-private:
-    ScoreNode *head;
-    int nCount;
-public:
-    ScoreBoard();
-    void SetCount(int n);
-    void AddFirst(Score inScore);
-    void Clear();//Wipe the List, Don't randomly call this please.
-};
 
 /*---------------------------------------------------------------------*/
 
@@ -77,10 +63,11 @@ private:
     int nCount;
 public:
     g_CourseList(); // At the time the list is created, it will automatically load saved data from the list.
-    void AddLast(g_Course inCourse);
-    void ExportScore(int StudentID, int Year, int Semester);
-    void ExportScore(char Coursecode[10], int Year, int Semester);
-    int getCount();
+    void AddLast(g_Course inCourse); //Add a new course to the current list, order does not matter so add last because i like to.
+    void ExportScore(int StudentID, int Year, int Semester, ofstream &fout); //Print scoreboard of a single student within 1 semester to fout
+    void ExportScore(char Coursecode[10], int Year, int Semester, ofstream &fout);//Print scoreboard of all student in a course to fout
+    int getCount();//Return the amount of courses, for later convenience
+    void Import(ifstream &fin)//Import new course from a file.
     void Clear(); //Wipe the List off the memory, only call this at the END of the program.
 
 };
