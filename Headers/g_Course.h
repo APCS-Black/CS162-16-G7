@@ -34,8 +34,8 @@ Introduction to computer science
 dbtien
 22/4/2017
 22/5/2017
-9:00:00
-11:00:00
+9 00 00
+11 00 00
 16CTT
 2 1551034 1451022
 70
