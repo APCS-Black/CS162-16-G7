@@ -17,8 +17,9 @@ Start At date
 End at date
 Start time
 End time
-Class
-Number of retakers Retakers.
+Date of week
+Class (00) if no class is specified
+Number of retakers/Singe students Retakers/Single students. (Later class are elective and a whole class might not in 1 course)
 Score list:
 Total number of student if this number is 0 then the score is not yet inputed by the lecturer
 Student ID
@@ -34,8 +35,9 @@ Introduction to computer science
 dbtien
 22/4/2017
 22/5/2017
-09,00
-11,00 (24h format)
+09 00
+11 00 (24h format)
+2
 16CTT
 2 1551034 1451022
 70

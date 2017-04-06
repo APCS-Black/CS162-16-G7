@@ -98,7 +98,9 @@ g_CourseList::g_CourseList(){
         fin>>temp.Lecturerusername;
         fin>>temp.Startat.day>>dash>>temp.Startat.month>>dash>>temp.Startat.year;
         fin>>temp.Endat.day>>dash>>temp.Endat.month>>dash>>temp.Endat.year;
-        fin>>temp.From>>temp.To;
+        fin>>temp.From.hour>>temp.From.minute;
+        fin>>temp.To.hour>>temp.To.minute;
+        fin>>temp.DateOfWeek;
         fin>>temp.Class;
         fin>>n;
         temp.Singles = new int[n+1];
@@ -209,14 +211,16 @@ void g_CourseList::Clear(){
     while (head){
         g_CourseNode *temp = head;
         head= head->next;
-        fout<<temp->data.Coursecode;
-        fout<<temp->data.Year;
-        fout<<temp->data.Semester;
-        fout<<temp->data.Coursename;
-        fout<<temp->data.Lecturerusername;
-        fout<<temp->data.Startat.day<<dash<<temp->data.Startat.month<<dash<<temp->data.Startat.year;
-        fout<<temp->data.Endat.day<<dash<<temp->data.Endat.month<<dash<<temp->data.Endat.year;
-        fout<<temp->data.From<<temp->data.To;
+        fout<<temp->data.Coursecode<<endl;
+        fout<<temp->data.Year<<endl;
+        fout<<temp->data.Semester<<endl;
+        fout<<temp->data.Coursename<<endl;
+        fout<<temp->data.Lecturerusername<<endl;
+        fout<<temp->data.Startat.day<<dash<<temp->data.Startat.month<<dash<<temp->data.Startat.year<<endl;
+        fout<<temp->data.Endat.day<<dash<<temp->data.Endat.month<<dash<<temp->data.Endat.year<<endl;
+        fout<<temp->data.From.hour<<" "<<temp->data.From.minute<<endl;
+        fout<<temp->data.To.hour<<" "<<temp->data.To.minute<<endl;
+        fout<<temp->data.DateOfWeek<<endl;
         fout<<temp->data.Class;
         for (int j=1; j<=temp->data.Singles[0]; j++){
             fout<<temp->data.Singles[j]<<" ";
@@ -241,7 +245,9 @@ void g_CourseList::Import(ifstream &fin){
         fin>>temp.Lecturerusername;
         fin>>temp.Startat.day>>dash>>temp.Startat.month>>dash>>temp.Startat.year;
         fin>>temp.Endat.day>>dash>>temp.Endat.month>>dash>>temp.Endat.year;
-        fin>>temp.From>>temp.To;
+        fin>>temp.From.hour>>temp.From.minute;
+        fin>>temp.To.hour>>temp.To.minute;
+        fin>>temp.DateOfWeek;
         fin>>temp.Class;
         fin>>n;
         temp.Singles = new int[n+1];
