@@ -12,7 +12,7 @@
 #include "SortArray.h"
 #include "SMS.h"
 #include "g_Course.h"
-
+#include "AcademicStaff.h"
 
 
 #endif // HEADERLIST_H_INCLUDED

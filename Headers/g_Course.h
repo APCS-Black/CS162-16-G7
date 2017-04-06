@@ -34,8 +34,8 @@ Introduction to computer science
 dbtien
 22/4/2017
 22/5/2017
-9 00 00
-11 00 00
+09,00
+11,00 (24h format)
 16CTT
 2 1551034 1451022
 70
@@ -67,7 +67,9 @@ public:
     void ExportScore(int StudentID, int Year, int Semester, ofstream &fout); //Print scoreboard of a single student within 1 semester to fout
     void ExportScore(char Coursecode[10], int Year, int Semester, ofstream &fout);//Print scoreboard of all student in a course to fout
     int getCount();//Return the amount of courses, for later convenience
-    void Import(ifstream &fin)//Import new course from a file.
+    void Import(ifstream &fin);//Import new course from a file.
+    g_Course *FindCourse(char Coursecode[10], int Year, int Semester);//Find a course, return a pointer to that course (for easy editing).
+    //It will return NULL if Course is not found. By returning the pointer, you can edit this course(import score) directly
     void Clear(); //Wipe the List off the memory, only call this at the END of the program.
 
 };

@@ -78,7 +78,7 @@ bool ScoreBoard::isAvailable(){
     return Available;
 }
 
-/*---------------------------------------------------*/
+/*-----------------------------------------------------------------------------------------------------------------------*/
 
 g_CourseList::g_CourseList(){
     head=NULL;
@@ -98,7 +98,7 @@ g_CourseList::g_CourseList(){
         fin>>temp.Lecturerusername;
         fin>>temp.Startat.day>>dash>>temp.Startat.month>>dash>>temp.Startat.year;
         fin>>temp.Endat.day>>dash>>temp.Endat.month>>dash>>temp.Endat.year;
-        fin>>temp.From>>temp.To; // fix later
+        fin>>temp.From>>temp.To;
         fin>>temp.Class;
         fin>>n;
         temp.Singles = new int[n+1];
@@ -216,7 +216,7 @@ void g_CourseList::Clear(){
         fout<<temp->data.Lecturerusername;
         fout<<temp->data.Startat.day<<dash<<temp->data.Startat.month<<dash<<temp->data.Startat.year;
         fout<<temp->data.Endat.day<<dash<<temp->data.Endat.month<<dash<<temp->data.Endat.year;
-        fout<<temp->data.From<<temp->data.To; // will fix this later
+        fout<<temp->data.From<<temp->data.To;
         fout<<temp->data.Class;
         for (int j=1; j<=temp->data.Singles[0]; j++){
             fout<<temp->data.Singles[j]<<" ";
@@ -241,7 +241,7 @@ void g_CourseList::Import(ifstream &fin){
         fin>>temp.Lecturerusername;
         fin>>temp.Startat.day>>dash>>temp.Startat.month>>dash>>temp.Startat.year;
         fin>>temp.Endat.day>>dash>>temp.Endat.month>>dash>>temp.Endat.year;
-        fin>>temp.From>>temp.To; // fix later
+        fin>>temp.From>>temp.To;
         fin>>temp.Class;
         fin>>n;
         temp.Singles = new int[n+1];
@@ -252,4 +252,15 @@ void g_CourseList::Import(ifstream &fin){
         temp.ScoreList.MakeUnavailable();
         nCount++;
         AddLast(temp);
+}
+
+g_Course *g_CourseList::FindCourse(char CourseCode[10], int Year, int Semester){
+    g_CourseNode *curr= head;
+    while (curr){
+            g_Course *CurrCourse = &curr->data;
+            if ((strcmp(CurrCourse->Coursecode,CourseCode)==0)&&(CurrCourse->Year==Year)&&(CurrCourse->Semester==Semester)){
+                return CurrCourse;
+            }
+    }
+    return NULL;
 }

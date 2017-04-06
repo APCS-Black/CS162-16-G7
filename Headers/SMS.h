@@ -61,8 +61,8 @@ struct g_Course //Global courses for the academic staff. Score will be stored he
 	char Lecturerusername[30];
 	Date Startat; // date
 	Date Endat; // date
-	int From; // time
-	int To; // time
+	char From[10]; // time
+	char To[10]; // time
 	//char DateOfWeek; // Monday, Tuesday…
     char Class[10]; //16CLC1, 16CTT, 15CLC2,...
     int *Singles; //Storing students who retakes the class by Student ID
