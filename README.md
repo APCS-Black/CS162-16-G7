@@ -1,8 +1,10 @@
 Curent state: 
 
-Nghi: Finished Courses feature. Now only need a menu to call them out. Will work on Presence/Abest as well as student list after we have student.
+Nghi: Finished Courses feature. Now only need a menu to call them out. Will work on Presence/Absent as well as student list after we have student.
 
 
-The Login guy please do the import of user data. Lots of love .
+Khoi is back, please work on the lecturer first.
 
-Quang go and work on the menu for Academic staff please. More love.
+Thanh please upload your work asap so I can make the Presence/Absent check ass well as import student list.
+
+Quang please try and test my work, tell me if any bug occurs, if nothing happens work on main login menu and user list, import user list.
