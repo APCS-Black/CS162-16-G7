@@ -1,5 +1,8 @@
 Curent state: 
 
-Nghi: Working on Global Courses, check source code for more info.
+Nghi: Finished Courses feature. Now only need a menu to call them out. Will work on Presence/Abest as well as student list after we have student.
 
-I've removed Dynamic Array stuff from this branch, good luck using linked list. Quang has created a very well-made SList class, try and utilize it.
+
+The Login guy please do the import of user data. Lots of love .
+
+Quang go and work on the menu for Academic staff please. More love.
