@@ -222,6 +222,7 @@ void g_CourseList::Clear(){
         fout<<temp->data.To.hour<<" "<<temp->data.To.minute<<endl;
         fout<<temp->data.DateOfWeek<<endl;
         fout<<temp->data.Class;
+        fout<<temp->data.Singles[0];
         for (int j=1; j<=temp->data.Singles[0]; j++){
             fout<<temp->data.Singles[j]<<" ";
         }
