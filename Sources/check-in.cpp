@@ -5,7 +5,7 @@ Check_inList::Check_inList(g_CourseList CourseList)
 {
     head=NULL;
     tail=NULL;
-    ifstream fin("student.txt");
+    ifstream fin("../Data/student.txt");
 	while(!fin.eof())
 	{
 		presence temp;
@@ -84,7 +84,7 @@ void Check_inList::checkIn(long student_id, g_CourseList CourseList)
 
 void Check_inList::export_file(g_CourseList CourseList)
 {
-	ofstream fout("student.txt");
+	ofstream fout("../Data/student.txt");
 			int numberofWeek;
 	while(head!=NULL)
 	{
