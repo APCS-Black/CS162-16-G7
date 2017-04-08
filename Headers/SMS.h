@@ -56,7 +56,12 @@ struct User
 	int Mobilephone;
 	int Type; // 0 – Student ; 1 – Academic staff; 2 – Lecturer
 	char Password[20];
-	char Class[10]; // 16CLC1, 16CLC2, 16CTT
+	char** Class; 
+	/*  Type 0: 16CLC1/ 16CLC2/ 16CTT/ ...
+		Type 1: none
+		Type 2: Class is used to store courses the lecturer is teaching
+				Class[0] is stored the number of courses as char
+	*/
 };
 
 struct g_Course //Global courses for the academic staff. Score will be stored here as well.
