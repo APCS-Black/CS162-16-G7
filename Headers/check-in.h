@@ -24,7 +24,7 @@ struct g_Course
 	Date Endat; // date
 	Mytime From;
 	Mytime To;
-	int  DateOfWeek; // Monday, Tuesday…
+	int  DateOfWeek; // Monday, Tuesdayâ€¦
     char Class[10];
 	int student_quantity;
 	int *Singles;
