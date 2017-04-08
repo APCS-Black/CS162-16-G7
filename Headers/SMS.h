@@ -76,13 +76,13 @@ struct g_Course //Global courses for the academic staff. Score will be stored he
     ScoreBoard ScoreList;
 };
 
-struct Presence
+
+struct presence
 {
 	char Coursecode[10];
-	int Year;
-	int Semester;
-	char StudentID[20];
-	int Week;
+	int year;
+	int semester;
+	long studentid;
+	int week[10];
 };
-
 
