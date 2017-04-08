@@ -157,6 +157,7 @@ void g_CourseList::ExportScore(char Coursecode[10], int Year, int Semester, ofst
             }
             return ;
         }
+        curr=curr->next;
     }
     fout<<"Course not found"<<endl;
 }
@@ -176,11 +177,7 @@ void g_CourseList::ExportScore(int StudentID, int Year, int Semester, ofstream &
                     break;
                 }
             }
-            int CurrClass = ((CurrCourse.Class[0]-'0')*10+(CurrCourse.Class[1]-'0'));
-            //I try to take the number in class Ex 16 from 16CTT
-            if ((check==0)&&(CurrClass==StudentID/100000)){
-                check = 1;
-            }
+            //Will check class when user list is available.
             //If he/she is i will go find his/her score and print them to fout.
             if (check==1){
                 fout<<CurrCourse.Coursecode<<" :"<<endl;
