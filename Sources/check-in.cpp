@@ -1,6 +1,7 @@
 //1651072
 // Tran Nguyen Son Thanh
 #include"../Headers/HeaderList.h"
+
 Check_inList::Check_inList(g_CourseList CourseList)
 {
     head=NULL;
@@ -117,4 +118,14 @@ int Check_inList::count_numberofWeek(g_Course *Course)
 	seconds=difftime(mktime(&date),mktime(&dateEnd));
 	number_ofWeek=seconds/86400+1;
 	return number_ofWeek;
+}
+
+void Check_inList::AddaStudent(long StudentID, char CourseCode[], int Year, int Semester){
+    presence temp;
+    temp.Coursecode=CourseCode;
+    temp.studentid=StudentID;
+    temp.semester=Semester;
+    temp.year=Year;
+    memset(temp.week,0,sizeof(temp.week));
+    AddLast(temp);
 }

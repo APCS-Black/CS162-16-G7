@@ -4,8 +4,10 @@
 #include <iostream>
 #include <fstream>
 #include <string.h>
-#include<ctime>
-#include<string>
+#include <termios.h>
+#include <string>
+#include <ctime>
+
 
 
 #include "CList.h"
@@ -13,10 +15,13 @@
 #include "SList.h"
 #include "SortArray.h"
 #include "SMS.h"
+#include "Class.h"
+#include "UserList.h"
 #include "g_Course.h"
 #include "check-in.h"
+#include "Lecturer.h"
 #include "AcademicStaff.h"
-
+#include "Menu.h"
 
 
 #endif // HEADERLIST_H_INCLUDED
