@@ -2,6 +2,7 @@
 #pragma once
 
 #include "HeaderList.h"
+#include "g_Course.h"
 
 struct presenceNode
 {
@@ -19,6 +20,7 @@ public:
 	void checkIn(long student_id, g_CourseList CourseList);
 	//void import_file(g_CourseList CourseList);
 	void export_file(g_CourseList CourseList);
+	void AddaStudent(long StudentID, char CourseCode[], int Year, int Semester);
 	int count_numberofWeek(g_Course *Course);
     int getCount();
     void Clear(); //Wipe the List off the memory, only call this at the END of the program.

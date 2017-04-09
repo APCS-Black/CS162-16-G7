@@ -162,7 +162,7 @@ void g_CourseList::ExportScore(char Coursecode[10], int Year, int Semester, ofst
     fout<<"Course not found"<<endl;
 }
 
-void g_CourseList::ExportScore(int StudentID, int Year, int Semester, ofstream &fout){
+void g_CourseList::ExportScore(int StudentID, int Year, int Semester, ofstream &fout, Class *in_class){
     g_CourseNode *curr = head;
     fout<<StudentID<<" "<<Year<<" "<<Semester<<endl<<"Score Report"<<endl;
     while (curr){
@@ -177,7 +177,9 @@ void g_CourseList::ExportScore(int StudentID, int Year, int Semester, ofstream &
                     break;
                 }
             }
-            //Will check class when user list is available.
+            if (strcmp(in_class->ClassName,CurrCourse->Class)==0) {
+                check = 1;
+            }
             //If he/she is i will go find his/her score and print them to fout.
             if (check==1){
                 fout<<CurrCourse.Coursecode<<" :"<<endl;
@@ -192,6 +194,7 @@ void g_CourseList::ExportScore(int StudentID, int Year, int Semester, ofstream &
             }
 
         }
+        curr=curr->next;
 
     }
 
@@ -231,7 +234,7 @@ void g_CourseList::Clear(){
     }
 }
 
-void g_CourseList::Import(ifstream &fin){
+void g_CourseList::Import(ifstream &fin, UserList uList, Check_inList checkinList, ClassList c_List){
         g_Course temp;
         char dash;//I use this to read in format dd/mm/yyyy
         int n;//Store what ever number i need (Number of single students/scores)
@@ -252,10 +255,16 @@ void g_CourseList::Import(ifstream &fin){
         temp.Singles[0]=n; // The first slot of the array will store the number, for later convenience
         for (int j=1; j<=n; j++){
             fin>>temp.Singles[j];
+            checkinList.AddaStudent(temp.Singles[j],temp.Coursecode,temp.Year,temp.Semester);
         }
+        //Find the class list and add everyone to checkin list.
+        Class *thisclass = c_List.FindClass(temp.Class);
+        thisclass.s_List.AddtoCheckin(checkinList,temp.Coursecode,temp.Year,temp.Semester);
         temp.ScoreList.MakeUnavailable();
         nCount++;
         AddLast(temp);
+        User *Lectuerer = uList.FindUser(temp.Lecturerusername);
+        UpdateLecturerClass(Lectuerer,temp.Coursecode,temp.Year,temp.Semester);
 }
 
 g_Course *g_CourseList::FindCourse(char CourseCode[10], int Year, int Semester){

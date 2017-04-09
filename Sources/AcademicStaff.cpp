@@ -34,7 +34,7 @@ void ExportCourseScore(g_CourseList CourseList){
 
 }
 
-void ExportStudentScore(g_CourseList CourseList){
+void ExportStudentScore(g_CourseList CourseList, ClassList c_List){
     char filename[200],filepath[500]="../Output/";
     int StudentID;
     int Year,Semester;
@@ -56,6 +56,8 @@ void ExportStudentScore(g_CourseList CourseList){
         }
     }
     ofstream fout;
+    Class *in_class;
+    in_class= c_List.FindClass(StudentID);
     if (check)  {
         strcpy(filepath,filename);
     } else {
@@ -63,11 +65,11 @@ void ExportStudentScore(g_CourseList CourseList){
     }
     fout.open(filepath);
     fout<<StudentID<<" Score report"<<endl;
-    CourseList.ExportScore(StudentID,Year,Semester,fout);
+    CourseList.ExportScore(StudentID,Year,Semester,fout, in_class);
     fout.close();
 }
 
-void ImportCourse(g_CourseList &CourseList){
+void ImportCourse(g_CourseList &CourseList, UserList uList, Check_inList checkinList, ClassList c_List){
     char filename[200],filepath[500]="../Import/";
     bool check = false;
     cout<<"Please enter the name input file: "<<endl;
@@ -88,6 +90,57 @@ void ImportCourse(g_CourseList &CourseList){
         strcat(filepath,filename);
     }
     fin.open(filepath);
-    CourseList.Import(fin);
+    CourseList.Import(fin, uList, checkinList,c_List);
+    fin.close();
+}
+
+void ImportStudent(UserList uList, ClassList c_List){
+    char filename[200],filepath[500]="../Import/";
+    bool check = false;
+    cout<<"Please enter the name input file: "<<endl;
+    cout<<"(If no path is specified, the default search path is: /Import/name.txt"<<endl;
+    cout<<" make sure your file is in that directory)"<<endl;
+    cin>>filename;
+    int l=strlen(filename);
+    for (int i=0; i<l; i++){
+        if (filename[i]=='/') {
+            check = true;
+            break;
+        }
+    }
+    ifstream fin;
+    if (check)  {
+        strcpy(filepath,filename);
+    } else {
+        strcat(filepath,filename);
+    }
+    fin.open(filepath);
+    //char ClassName[10];
+    int n;
+    Class temp;
+    fin>>temp.ClassName;
+    fin>>n;
+
+    //temp.ClassName=ClassName;
+    temp.StudentCount=n;
+    /*
+        Here i will add a student into their class list and create a new user for them at the same time.
+    */
+    for (int i=0; i<n; i++){
+        User newUser;
+        fin>>newUser.Username;
+        //int StudentID= ConvertoNum(newUser.Username); create this function for me please
+        newUser.Class[0] = temp.ClassName;
+        temp.s_List.AddStudent(StudentID);
+        fin.ignore(2,'\n');
+        fin.getline(newUser.Fullname,30,'\n');
+        Date inDate;
+        char dash;
+        fin>>inDate.day>>dash>>inDate.month>>dash>>inDate.year;
+        // create a function to set password as ddmmyyyy pleasety
+        newUser.Type=0;
+        uList.AddHead(newUser);
+
+    }
     fin.close();
 }
