@@ -1,7 +1,7 @@
-#include "../Headers/Lecture.h"
+#include "../Headers/HeaderList.h"
 
 #include <iostream>
-#include <windows.h>
+//#include <windows.h>
 using namespace std;
 
 /*When need to clear screen, use this function or system("cls"); with #include<stdlib.h>*/
@@ -32,14 +32,14 @@ void clear_screen(void)
 //This function is only used for char** Class from class User
 int convertCharArrtoNum(char str[])
 {
-	int n = str.strlen();
+	int n = strlen(str);
 	if (n == 1) return ((int)str[0] - 48); //when char array is '1' to '9'
 	if (n == 2) //when char array is "10" -> "99"
 		return ( ((int)str[0] - 48) * 10 + ((int)str[1] - 48) );
 	return NULL;
 }
 
-bool InputScoreListFile(ScoreBoard ScoreList, ifstream fin)
+bool InputScoreListFile(ScoreBoard ScoreList, ifstream &fin)
 {
 	if (!fin) return false;
 
@@ -109,14 +109,14 @@ void ImportScore(g_CourseList &CourseList, User Lecturer)
 		{
 			cout << "False input!\n";
 			cout << "[Press Enter to continue]";
-			cin.getline();
+			cin.getline(); //Fix this please, basic GNU can't use this.
 			clear_screen();
 			continue;
 		}
 
 		if (i == j + 1) return;
 
-		g_Course* course = FindCourse(Lecturer.Class[i], this_year, this_semester);
+		g_Course* course = CourseList.FindCourse(Lecturer.Class[i], this_year, this_semester);
 
 		/*Read from the file given by user*/
 		char filename[200], filepath[500] = "../Import/";
@@ -143,13 +143,13 @@ void ImportScore(g_CourseList &CourseList, User Lecturer)
 		//--------------------------------------//
 		course->ScoreList.MakeUnavailable();
 		course->ScoreList.Clear();
-		if (InputScoreListFile(course->ScoreList, ifstream fin))
+		if (InputScoreListFile(course->ScoreList,fin))
 		{
 			cout << "Input score list from file successfully!\n";
 			course->ScoreList.MakeAvailable();
 		}
 		else cout << "An error has occured! Failed to input score list from file...\n";
-		
+
 		fin.close();
 	}
 }
@@ -176,13 +176,13 @@ char* convertNumtoCharArr(int num)
 	return res;
 }
 
-/*This function used for updating the courses list of the lecturer 
+/*This function used for updating the courses list of the lecturer
 is called when a new course is created and assigned to a lecturer */
-void UpdateLecturerClass(User* user, char Coursecode[])
+void UpdateLecturerClass(User* user, char Coursecode[],int Year, int Semester)
 {
-	int n = convertCharArrtoNum(user.Class[0]);//Convert number of lecturer's courses from char* to int
+	int n = convertCharArrtoNum(user->Class[0]);//Convert number of lecturer's courses from char* to int
 	++n;//Increasing since this lecturer has 1 more new course to teach
-	strcpy(user.Class[0], convertNumtoCharArr(n));//After increasing, copy it back to the storage char array
-	
-	strcpy(user.Class[n], Coursecode);//Add Coursecode to the courses storage of this lecturer
+	strcpy(user->Class[0], convertNumtoCharArr(n));//After increasing, copy it back to the storage char array
+
+	strcpy(user->Class[n], Coursecode);//Add Coursecode to the courses storage of this lecturer
 }

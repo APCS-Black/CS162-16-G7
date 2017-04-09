@@ -56,7 +56,7 @@ struct User
 	int Mobilephone;
 	int Type; // 0 – Student ; 1 – Academic staff; 2 – Lecturer
 	char Password[20];
-	char** Class; 
+	char** Class;
 	/*  Type 0: 16CLC1/ 16CLC2/ 16CTT/ ...
 		Type 1: none
 		Type 2: Class is used to store courses the lecturer is teaching
@@ -90,4 +90,6 @@ struct presence
 	long studentid;
 	int week[10];
 };
+
+
 
